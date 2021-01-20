@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">My Planner App</string>
+    <string name="start_with_your_daily_or_long_term_tasks_that_you_need_to_get_done">start_text</string>
+</resources>
