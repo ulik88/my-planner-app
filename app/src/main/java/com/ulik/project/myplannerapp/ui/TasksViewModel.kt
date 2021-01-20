@@ -14,12 +14,18 @@ class TasksViewModel(
     private val domain: MainDomain,
     private val tasksPresenterState: TaskPresenterState
 ) : ViewModel(), TaskPresenterState by tasksPresenterState {
+    val tasks = mutableListOf<Task>()
+
+    init {
+//        tasksPresenterState.shoTaskSaveSuccesfuly.observeForever( Observer {
+//            tasks.clear()
+//            tasks.addAll(it)
+//        })
+    }
 
     fun saveTask(description: String, title: String) {
-
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-
                 domain.createTask(Task(title = title, description = description))
             }
         }

@@ -2,9 +2,10 @@ package com.ulik.project.myplannerapp.presenter
 
 import androidx.lifecycle.LiveData
 import com.ulik.project.myplannerapp.data.model.Task
+import com.ulik.project.myplannerapp.utilities.Event
 
 interface TaskPresenterState {
-    val loadingEvent: LiveData<Boolean>
-    val showErrorEvent: LiveData<String>
-    val shoTaskSaveSuccesfuly: LiveData<List<Task>>
+    val loadingEvent: LiveData<Event<Boolean>>
+    val showErrorEvent: LiveData<Event<String>>
+    val shoTaskSaveSuccesfuly:LiveData<Event<List<Task>>>
 }
