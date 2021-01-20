@@ -39,6 +39,16 @@ class TasksAdapter(val tasksViewModel: TasksViewModel) : RecyclerView.Adapter<Ta
                 description.text = task.description
                 complete_checkbox.isChecked = task.isCompleted
             }
+
+//            if (task.isFavorite){
+//                iv_isfavorite.setImageResource(R.drawable.ic_baseline_favorite_red)
+//            }else{
+//                iv_isfavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+//            }
+//
+//            iv_isfavorite.setOnClickListener {
+//                tasksViewModel.taskEditUpdate(task.copy(isFavorite = !task.isFavorite))
+//            }
         }
     }
 }
