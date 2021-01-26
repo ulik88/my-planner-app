@@ -2,9 +2,7 @@ package com.ulik.project.myplannerapp.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -12,6 +10,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ulik.project.myplannerapp.R
+import com.ulik.project.myplannerapp.utilities.EventObserver
 import kotlinx.android.synthetic.main.fragment_tasks.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -21,13 +20,20 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
+
         btnStart.setOnClickListener {
             findNavController().navigate(R.id.action_tasksFragment_to_addTaskFragment)
         }
         tasksViewModel.shoTaskSaveSuccesfuly.observe(viewLifecycleOwner, Observer {
             adapter.update(it.peekContent())
         })
+
+
+        tasksViewModel.deleteTask.observe(viewLifecycleOwner, EventObserver{
+            Toast.makeText(requireActivity(), "Deleted!", Toast.LENGTH_SHORT).show()
+        })
     }
+
     private fun initRecyclerView() {
         adapter = TasksAdapter(tasksViewModel)
         with(recycler_view) {
@@ -36,7 +42,7 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
             val simpleItemTouchCallback: ItemTouchHelper.SimpleCallback = object :
                     ItemTouchHelper.SimpleCallback(
                             0,
-                            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT or ItemTouchHelper.DOWN or ItemTouchHelper.UP
+                            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
                     ) {
                 override fun onMove(
                         recyclerView: RecyclerView,

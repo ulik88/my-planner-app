@@ -12,12 +12,6 @@ class TasksPresneterImpl : TaskPresenterState,TasksPresnter{
         _loadingEvent.postValue(Event(state))
     }
 
-    private val _deleteTask = MutableLiveData<Event<List<Task>>>()
-    override val deleteTask: LiveData<Event<List<Task>>> = _deleteTask
-    override suspend fun showDeletedTask(tasks: List<Task>) {
-        _deleteTask.postValue(Event(tasks))
-    }
-
     private val _showErrorEvent = MutableLiveData<Event<String>>()
     override val showErrorEvent: LiveData<Event<String>> = _showErrorEvent
     override suspend fun showError(message: String) {
@@ -28,6 +22,12 @@ class TasksPresneterImpl : TaskPresenterState,TasksPresnter{
     override val shoTaskSaveSuccesfuly: LiveData<Event<List<Task>>> = _shoTaskSaveSuccesfuly
     override suspend fun showTaskSavedSuccessfuly(tasks:List<Task>) {
         _shoTaskSaveSuccesfuly.postValue(Event(tasks))
+    }
+
+    private val _deleteTask = MutableLiveData<Event<Unit>>()
+    override val deleteTask: LiveData<Event<Unit>> = _deleteTask
+    override suspend fun taskDeletedSuccesfully() {
+        _deleteTask.postValue(Event(Unit))
     }
 
 }

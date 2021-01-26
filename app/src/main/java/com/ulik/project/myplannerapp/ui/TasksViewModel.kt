@@ -35,6 +35,7 @@ class TasksViewModel(
         viewModelScope.launch {
             withContext(Dispatchers.IO){
                 useCase.deleteTask(tasks[position])
+                tasks.removeAt(position)
             }
         }
     }

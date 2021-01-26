@@ -29,7 +29,7 @@ class MainUseCase(
     }
 
     suspend fun deleteTask(task: Task){
-//        tasksPresenter.showDeletedTask()
+//        tasksPresenter.taskDeletedSuccesfully()
 
         var delete = taskRepository.deleteTask(task)
         when(delete){

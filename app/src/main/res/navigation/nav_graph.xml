@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/tasksFragment">
+    app:startDestination="@id/startPage">
 
     <fragment
         android:id="@+id/tasksFragment"
@@ -23,5 +23,14 @@
         <action
             android:id="@+id/action_addTaskFragment_to_tasksFragment"
             app:destination="@id/tasksFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/startPage"
+        android:name="com.ulik.project.myplannerapp.ui.StartPage"
+        android:label="fragment_start_page"
+        tools:layout="@layout/fragment_start_page" >
+        <action
+            android:id="@+id/action_startPage_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
     </fragment>
 </navigation>
