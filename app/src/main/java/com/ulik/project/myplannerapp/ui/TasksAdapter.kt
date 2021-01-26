@@ -38,6 +38,14 @@ class TasksAdapter(val tasksViewModel: TasksViewModel) : RecyclerView.Adapter<Ta
                 title_tv.text = task.title
                 description.text = task.description
                 complete_checkbox.isChecked = task.isCompleted
+
+//                itemView.complete_checkbox.setOnClickListener{
+//                    tasksViewModel.taskEdit
+//                }
+            }
+
+            itemView.setOnClickListener{
+                tasksViewModel.showTaskDetails(task)
             }
 
 //            if (task.isFavorite){

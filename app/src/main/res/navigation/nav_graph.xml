@@ -13,6 +13,9 @@
     <action
         android:id="@+id/action_tasksFragment_to_addTaskFragment"
         app:destination="@id/addTaskFragment" />
+        <action
+            android:id="@+id/action_tasksFragment_to_taskDetailFragment"
+            app:destination="@id/taskDetailFragment" />
     </fragment>
 
     <fragment
@@ -22,7 +25,14 @@
         tools:layout="@layout/fragment_add_task" >
         <action
             android:id="@+id/action_addTaskFragment_to_tasksFragment"
-            app:destination="@id/tasksFragment" />
+            app:destination="@id/tasksFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"/>
+        <argument
+            android:name="task"
+            app:argType="com.ulik.project.myplannerapp.data.model.Task"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/startPage"
@@ -31,6 +41,18 @@
         tools:layout="@layout/fragment_start_page" >
         <action
             android:id="@+id/action_startPage_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskDetailFragment"
+        android:name="com.ulik.project.myplannerapp.ui.TaskDetailFragment"
+        android:label="fragment_task_detail"
+        tools:layout="@layout/fragment_task_detail" >
+        <argument
+            android:name="task"
+            app:argType="com.ulik.project.myplannerapp.data.model.Task" />
+        <action
+            android:id="@+id/action_taskDetailFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
     </fragment>
 </navigation>

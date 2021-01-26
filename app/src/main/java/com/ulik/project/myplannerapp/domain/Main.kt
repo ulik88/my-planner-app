@@ -41,4 +41,19 @@ class MainUseCase(
             }
         }
     }
+
+
+    suspend fun updateTask(task: Task) {
+        var update = taskRepository.updateTask(task)
+        when(update){
+
+            is Result.Success ->{
+                tasksPresenter.showTaskSavedSuccessfuly(update.data)
+            }
+
+            is Result.Error ->{
+                tasksPresenter.showError(update.exception.toString())
+            }
+        }
+    }
 }

@@ -17,13 +17,15 @@ import org.koin.android.viewmodel.ext.android.sharedViewModel
 class TasksFragment : Fragment(R.layout.fragment_tasks) {
     val tasksViewModel: TasksViewModel by sharedViewModel()
     private lateinit var adapter: TasksAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
 
-        btnStart.setOnClickListener {
+        btnSave.setOnClickListener {
             findNavController().navigate(R.id.action_tasksFragment_to_addTaskFragment)
         }
+
         tasksViewModel.shoTaskSaveSuccesfuly.observe(viewLifecycleOwner, Observer {
             adapter.update(it.peekContent())
         })
@@ -32,7 +34,15 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
         tasksViewModel.deleteTask.observe(viewLifecycleOwner, EventObserver{
             Toast.makeText(requireActivity(), "Deleted!", Toast.LENGTH_SHORT).show()
         })
+
+        tasksViewModel.openTaskDetails.observe(viewLifecycleOwner, EventObserver {task ->
+            val directions = TasksFragmentDirections.actionTasksFragmentToTaskDetailFragment(task)
+
+            findNavController().navigate(directions)
+        })
     }
+
+
 
     private fun initRecyclerView() {
         adapter = TasksAdapter(tasksViewModel)

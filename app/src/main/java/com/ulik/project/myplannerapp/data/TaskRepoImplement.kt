@@ -19,13 +19,13 @@ class TaskRepoImplement : TaskRepository {
         return Result.Success(taskList)
     }
 
-    override suspend fun updateTask(task: Task): Result<Unit> {
+    override suspend fun updateTask(task: Task): Result<List<Task>> {
         taskList.forEach {
 
             if (it.id == task.id){
                 taskList.remove(it)
                 taskList.add(task)
-                return Result.Success(Unit)
+                return Result.Success(taskList.reversed())
             }
         }
         return Result.Error(Exception("task not found"))
