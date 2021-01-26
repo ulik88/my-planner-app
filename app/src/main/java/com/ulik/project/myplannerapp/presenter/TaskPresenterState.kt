@@ -8,4 +8,5 @@ interface TaskPresenterState {
     val loadingEvent: LiveData<Event<Boolean>>
     val showErrorEvent: LiveData<Event<String>>
     val shoTaskSaveSuccesfuly:LiveData<Event<List<Task>>>
+    val deleteTask: LiveData<Event<List<Task>>>
 }

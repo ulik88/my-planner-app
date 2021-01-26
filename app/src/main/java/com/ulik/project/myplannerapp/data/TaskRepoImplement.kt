@@ -14,7 +14,7 @@ class TaskRepoImplement : TaskRepository {
     }
 
     override suspend fun saveTask(task: Task): Result<List<Task>> {
-        delay(3000)
+        delay(1000)
         taskList.add(task)
         return Result.Success(taskList)
     }
@@ -31,12 +31,12 @@ class TaskRepoImplement : TaskRepository {
         return Result.Error(Exception("task not found"))
     }
 
-    override suspend fun deleteTask(task: Task): Result<Unit> {
+    override suspend fun deleteTask(task: Task): Result<List<Task>> {
         taskList.forEach {
 
             if (it.id == task.id){
                 taskList.remove(it)
-                return Result.Success(Unit)
+                return Result.Success(taskList)
             }
         }
         return Result.Error(Exception("task not found"))

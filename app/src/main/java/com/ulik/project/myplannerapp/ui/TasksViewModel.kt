@@ -26,7 +26,15 @@ class TasksViewModel(
     fun saveTask(description: String, title: String) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                domain.createTask(Task(title = title, description = description))
+                domain.saveTask(Task(title = title, description = description))
+            }
+        }
+    }
+
+    fun remove(position: Int){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                domain.deleteTask(tasks[position])
             }
         }
     }

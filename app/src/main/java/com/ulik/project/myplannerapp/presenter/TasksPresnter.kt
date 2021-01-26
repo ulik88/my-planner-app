@@ -7,4 +7,5 @@ interface TasksPresnter {
     suspend fun showTaskSavedSuccessfuly(tasks:List<Task>)
     suspend fun showError(message: String)
     suspend fun showLoading(state: Boolean)
+    suspend fun showDeletedTask(tasks: List<Task>)
 }
