@@ -7,7 +7,7 @@ import com.ulik.project.myplannerapp.utilities.Event
 import com.ulik.project.myplannerapp.utilities.Result
 import kotlinx.coroutines.delay
 
-class MainDomain(
+class MainUseCase(
     val taskRepository: TaskRepository,
     val tasksPresenter: TasksPresnter
 

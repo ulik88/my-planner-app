@@ -2,7 +2,7 @@ package com.ulik.project.myplannerapp.utilities.di
 
 import com.ulik.project.myplannerapp.data.TaskRepoImplement
 import com.ulik.project.myplannerapp.data.TaskRepository
-import com.ulik.project.myplannerapp.domain.MainDomain
+import com.ulik.project.myplannerapp.domain.MainUseCase
 import com.ulik.project.myplannerapp.presenter.TaskPresenterState
 import com.ulik.project.myplannerapp.presenter.TasksPresneterImpl
 import com.ulik.project.myplannerapp.presenter.TasksPresnter
@@ -13,7 +13,7 @@ import org.koin.dsl.module
 val viewModel = module {
     viewModel {
         TasksViewModel(
-            domain = get(),
+            useCase = get(),
             tasksPresenterState = get()
         )
     }
@@ -21,7 +21,7 @@ val viewModel = module {
 
 val domainModule = module {
     single {
-        MainDomain(
+        MainUseCase(
             taskRepository = get(),
             tasksPresenter = get()
         )

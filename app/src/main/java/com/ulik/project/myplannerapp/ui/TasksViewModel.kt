@@ -3,7 +3,7 @@ package com.ulik.project.myplannerapp.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ulik.project.myplannerapp.data.model.Task
-import com.ulik.project.myplannerapp.domain.MainDomain
+import com.ulik.project.myplannerapp.domain.MainUseCase
 import com.ulik.project.myplannerapp.presenter.TaskPresenterState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -11,8 +11,8 @@ import kotlinx.coroutines.withContext
 
 
 class TasksViewModel(
-    private val domain: MainDomain,
-    private val tasksPresenterState: TaskPresenterState
+        private val useCase: MainUseCase,
+        private val tasksPresenterState: TaskPresenterState
 ) : ViewModel(), TaskPresenterState by tasksPresenterState {
     val tasks = mutableListOf<Task>()
 
@@ -26,7 +26,7 @@ class TasksViewModel(
     fun saveTask(description: String, title: String) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                domain.saveTask(Task(title = title, description = description))
+                useCase.saveTask(Task(title = title, description = description))
             }
         }
     }
@@ -34,7 +34,7 @@ class TasksViewModel(
     fun remove(position: Int){
         viewModelScope.launch {
             withContext(Dispatchers.IO){
-                domain.deleteTask(tasks[position])
+                useCase.deleteTask(tasks[position])
             }
         }
     }
