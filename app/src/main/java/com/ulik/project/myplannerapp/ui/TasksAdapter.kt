@@ -1,5 +1,6 @@
 package com.ulik.project.myplannerapp.ui
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,28 +36,35 @@ class TasksAdapter(val tasksViewModel: TasksViewModel) : RecyclerView.Adapter<Ta
 
         fun bind(task: Task) {
             with(itemView) {
+
+                if (task.isCompleted) {
+                    title_tv.paintFlags = title_tv.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                } else {
+                    title_tv.paintFlags = View.INVISIBLE
+                }
+
                 title_tv.text = task.title
                 description.text = task.description
                 complete_checkbox.isChecked = task.isCompleted
 
-//                itemView.complete_checkbox.setOnClickListener{
-//                    tasksViewModel.taskEdit
-//                }
-            }
 
-            itemView.setOnClickListener{
-                tasksViewModel.showTaskDetails(task)
-            }
+                if (task.isFavorite) {
+                    iv_isfavorite.setImageResource(R.drawable.ic_baseline_favorite_red)
+                } else {
+                    iv_isfavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+                }
+                itemView.complete_checkbox.setOnClickListener {
+                    tasksViewModel.taskUpdate(task.copy(isCompleted = complete_checkbox.isChecked))
 
-//            if (task.isFavorite){
-//                iv_isfavorite.setImageResource(R.drawable.ic_baseline_favorite_red)
-//            }else{
-//                iv_isfavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
-//            }
-//
-//            iv_isfavorite.setOnClickListener {
-//                tasksViewModel.taskEditUpdate(task.copy(isFavorite = !task.isFavorite))
-//            }
+                }
+                iv_isfavorite.setOnClickListener {
+                    tasksViewModel.taskUpdate(task.copy(isFavorite = !task.isFavorite))
+                }
+
+                itemView.setOnClickListener {
+                    tasksViewModel.showTaskDetails(task)
+                }
+            }
         }
     }
 }
