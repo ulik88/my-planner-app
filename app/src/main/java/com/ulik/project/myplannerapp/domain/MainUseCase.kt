@@ -28,6 +28,19 @@ class MainUseCase(
         tasksPresenter.showLoading(false)
     }
 
+    suspend fun updateTask(task: Task) {
+        var update = taskRepository.updateTask(task)
+        when(update){
+
+            is Result.Success ->{
+                tasksPresenter.showTaskSavedSuccessfuly(update.data)
+            }
+
+            is Result.Error ->{
+                tasksPresenter.showError(update.exception.toString())
+            }
+        }
+    }
     suspend fun deleteTask(task: Task){
 //        tasksPresenter.taskDeletedSuccesfully()
 
@@ -42,18 +55,17 @@ class MainUseCase(
         }
     }
 
-
-    suspend fun updateTask(task: Task) {
-        var update = taskRepository.updateTask(task)
-        when(update){
-
-            is Result.Success ->{
-                tasksPresenter.showTaskSavedSuccessfuly(update.data)
+    suspend fun getAllTasks() {
+        tasksPresenter.showLoading(true)
+        val result = taskRepository.getTasks()
+        when (result) {
+            is Result.Success -> {
+                tasksPresenter.showTaskSavedSuccessfuly(result.data)
             }
-
-            is Result.Error ->{
-                tasksPresenter.showError(update.exception.toString())
+            is Result.Error -> {
+                tasksPresenter.showError(result.exception.toString())
             }
         }
+        tasksPresenter.showLoading(false)
     }
 }

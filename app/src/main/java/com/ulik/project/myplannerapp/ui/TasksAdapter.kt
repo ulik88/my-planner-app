@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.item_task.view.*
 
 class TasksAdapter(val tasksViewModel: TasksViewModel) : RecyclerView.Adapter<TasksAdapter.HistoryViewHolder>() {
 
+    val tasks = mutableListOf<Task>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_task, parent, false)
@@ -19,16 +21,16 @@ class TasksAdapter(val tasksViewModel: TasksViewModel) : RecyclerView.Adapter<Ta
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.bind(tasksViewModel.tasks[position])
+        holder.bind(tasks[position])
     }
 
     override fun getItemCount(): Int {
-        return tasksViewModel.tasks.size
+        return tasks.size
     }
 
     fun update(list: List<Task>) {
-        tasksViewModel.tasks.clear()
-        tasksViewModel.tasks.addAll(list)
+       tasks.clear()
+        tasks.addAll(list)
         notifyDataSetChanged()
     }
 

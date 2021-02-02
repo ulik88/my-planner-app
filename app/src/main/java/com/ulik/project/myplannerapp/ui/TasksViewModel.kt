@@ -20,10 +20,12 @@ class TasksViewModel(
     val tasks = mutableListOf<Task>()
 
     init {
-//        tasksPresenterState.shoTaskSaveSuccesfuly.observeForever( Observer {
-//            tasks.clear()
-//            tasks.addAll(it)
-//        })
+
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                useCase.getAllTasks()
+            }
+        }
     }
 
     fun saveTask(description: String, title: String) {
@@ -42,11 +44,11 @@ class TasksViewModel(
         }
     }
 
-    fun remove(position: Int){
+    fun remove(task: Task){
         viewModelScope.launch {
             withContext(Dispatchers.IO){
-                useCase.deleteTask(tasks[position])
-                tasks.removeAt(position)
+                useCase.deleteTask(task)
+//                tasks.removeAt(position)
             }
         }
     }
@@ -54,7 +56,6 @@ class TasksViewModel(
     private val _openTaskDetails = MutableLiveData<Event<Task>>() // Works here by ViewModel only
     val openTaskDetails: LiveData<Event<Task>> = _openTaskDetails  // wird vom Fragment beobachtet
     fun showTaskDetails(task: Task) {
-
         _openTaskDetails.value= Event(task)   //InFlow, value of LiveData
     }
 }

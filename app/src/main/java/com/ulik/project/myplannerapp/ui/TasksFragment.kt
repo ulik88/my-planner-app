@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ulik.project.myplannerapp.R
 import com.ulik.project.myplannerapp.utilities.EventObserver
+import com.ulik.project.myplannerapp.utilities.SwipeToDeleteCallback
 import kotlinx.android.synthetic.main.fragment_tasks.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -43,36 +44,53 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
     }
 
 
+    fun getPosition(adapterPosition: Int): Int{
+        if (adapterPosition == -1) return 0
+        return adapterPosition
+    }
+
 
     private fun initRecyclerView() {
         adapter = TasksAdapter(tasksViewModel)
         with(recycler_view) {
             layoutManager = LinearLayoutManager(requireContext())
 
-            val simpleItemTouchCallback: ItemTouchHelper.SimpleCallback = object :
-                    ItemTouchHelper.SimpleCallback(
-                            0,
-                            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-                    ) {
-                override fun onMove(
-                        recyclerView: RecyclerView,
-                        viewHolder: RecyclerView.ViewHolder,
-                        target: RecyclerView.ViewHolder
-                ): Boolean {
-                    Toast.makeText(requireActivity(), "on Move", Toast.LENGTH_SHORT).show()
-                    return false
-                }
-
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
-                    Toast.makeText(requireActivity(), "on Swiped ", Toast.LENGTH_SHORT).show()
-                    //Remove swiped item from list and notify the RecyclerView
-                    val position = viewHolder.adapterPosition
-                    tasksViewModel.remove(position)
-                    adapter!!.notifyDataSetChanged()
+            val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    val adapter = recycler_view.adapter as TasksAdapter
+//                    adapter.removeAt(viewHolder.adapterPosition)
+                    val pos = getPosition(viewHolder.adapterPosition)
+                    tasksViewModel.remove(adapter.tasks[pos])
+                    adapter.tasks.removeAt(pos)
+                    adapter.notifyDataSetChanged()
                 }
             }
 
-            val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
+
+//            val simpleItemTouchCallback: ItemTouchHelper.SimpleCallback = object :
+//                    ItemTouchHelper.SimpleCallback(
+//                            0,
+//                            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+//                    ) {
+//                override fun onMove(
+//                        recyclerView: RecyclerView,
+//                        viewHolder: RecyclerView.ViewHolder,
+//                        target: RecyclerView.ViewHolder
+//                ): Boolean {
+//                    Toast.makeText(requireActivity(), "on Move", Toast.LENGTH_SHORT).show()
+//                    return false
+//                }
+//
+//                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
+//                    Toast.makeText(requireActivity(), "on Swiped ", Toast.LENGTH_SHORT).show()
+//                    //Remove swiped item from list and notify the RecyclerView
+//                    val position = viewHolder.adapterPosition
+//                    tasksViewModel.remove(position)
+//                    adapter!!.notifyDataSetChanged()
+//                }
+//            }
+
+            val itemTouchHelper = ItemTouchHelper(swipeHandler)
             itemTouchHelper.attachToRecyclerView(recycler_view)
 
         }
