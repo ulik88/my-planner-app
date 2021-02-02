@@ -42,7 +42,7 @@
         tools:text="Start with your daily or long-term tasks that you need to get done" />
 
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btn_save"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"

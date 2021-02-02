@@ -23,7 +23,7 @@ class TaskDetailFragment : Fragment(R.layout.fragment_task_detail) {
         tv_title_to_edit.text = recievedTask.title
         tv_description_to_edit.text = recievedTask.description
 
-        edit_btn.setOnClickListener {
+        iv_edit.setOnClickListener {
 
             var text = tv_title_to_edit.text.toString()
             var description = tv_description_to_edit.text.toString()

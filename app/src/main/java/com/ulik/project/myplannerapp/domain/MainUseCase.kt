@@ -34,7 +34,7 @@ class MainUseCase(
         var delete = taskRepository.deleteTask(task)
         when(delete){
             is Result.Success -> {
-                tasksPresenter.showTaskSavedSuccessfuly(delete.data)
+                tasksPresenter.taskDeletedSuccesfully()
             }
             is Result.Error ->{
                 tasksPresenter.showError(delete.exception.toString())

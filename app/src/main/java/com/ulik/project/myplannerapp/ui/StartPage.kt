@@ -15,7 +15,7 @@ class StartPage : Fragment(R.layout.fragment_start_page) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnSave.setOnClickListener{
+        btn_save.setOnClickListener{
             findNavController().navigate(R.id.action_startPage_to_addTaskFragment, null)
         }
     }

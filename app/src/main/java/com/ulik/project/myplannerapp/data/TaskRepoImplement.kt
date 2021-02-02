@@ -31,12 +31,12 @@ class TaskRepoImplement : TaskRepository {
         return Result.Error(Exception("task not found"))
     }
 
-    override suspend fun deleteTask(task: Task): Result<List<Task>> {
+    override suspend fun deleteTask(task: Task): Result<Unit> {
         taskList.forEach {
 
             if (it.id == task.id){
                 taskList.remove(it)
-                return Result.Success(taskList)
+                return Result.Success(Unit)
             }
         }
         return Result.Error(Exception("task not found"))

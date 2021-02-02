@@ -22,7 +22,7 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
 
-        btnSave.setOnClickListener {
+        btn_save.setOnClickListener {
             findNavController().navigate(R.id.action_tasksFragment_to_addTaskFragment)
         }
 
