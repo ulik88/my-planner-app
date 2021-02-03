@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.ulik.project.myplannerapp.data.model.Task
 import com.ulik.project.myplannerapp.utilities.Event
 
-class TasksPresneterImpl : TaskPresenterState,TasksPresnter{
+class TasksPresneterImpl : TaskPresenterState,TasksPresenter{
     private val _loadingEvent = MutableLiveData<Event<Boolean>>()
     override val loadingEvent: LiveData<Event<Boolean>> = _loadingEvent
     override suspend fun showLoading(state: Boolean) {
@@ -18,10 +18,27 @@ class TasksPresneterImpl : TaskPresenterState,TasksPresnter{
         _showErrorEvent.postValue(Event(message))
     }
 
-    private val _shoTaskSaveSuccesfuly = MutableLiveData<Event<List<Task>>>()
-    override val shoTaskSaveSuccesfuly: LiveData<Event<List<Task>>> = _shoTaskSaveSuccesfuly
+    val _updateAdapter: MutableLiveData<Event<List<Task>>> = MutableLiveData<Event<List<Task>>>()
+    override val updateAdapter: LiveData<Event<List<Task>>> =_updateAdapter
+
+    private val _showTaskSavedSuccesfuly = MutableLiveData<Event<List<Task>>>()
+    override val showTaskSaveSuccesfuly: LiveData<Event<List<Task>>> = _showTaskSavedSuccesfuly
+
+
+    private val _navigateToTasksFragment: MutableLiveData<Event<List<Task>>> =
+        _showTaskSavedSuccesfuly
+    override val navigateToTasksFragment: LiveData<Event<List<Task>>> = _navigateToTasksFragment
+
     override suspend fun showTaskSavedSuccessfuly(tasks:List<Task>) {
-        _shoTaskSaveSuccesfuly.postValue(Event(tasks))
+        _showTaskSavedSuccesfuly.postValue(Event(tasks))
+        _updateAdapter.postValue(Event(tasks))
+        _navigateToTasksFragment.postValue(Event(tasks))
+    }
+
+    private val _showLoadedTaskEvent = MutableLiveData<Event<List<Task>>>()
+    override val showLoadedTaskEvent: LiveData<Event<List<Task>>> = _showLoadedTaskEvent
+    override suspend fun showLoadedTask(tasks: List<Task>) {
+        _showLoadedTaskEvent.postValue(Event(tasks))
     }
 
     private val _deleteTask = MutableLiveData<Event<Unit>>()
@@ -29,5 +46,4 @@ class TasksPresneterImpl : TaskPresenterState,TasksPresnter{
     override suspend fun taskDeletedSuccesfully() {
         _deleteTask.postValue(Event(Unit))
     }
-
 }

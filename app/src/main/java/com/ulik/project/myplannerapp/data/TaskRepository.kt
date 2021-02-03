@@ -8,4 +8,5 @@ interface TaskRepository{
     suspend fun saveTask(task: Task):Result<List<Task>>
     suspend fun updateTask(task: Task):Result<List<Task>>
     suspend fun deleteTask(task: Task):Result<Unit>
+//    suspend fun shareTaskToGroup(task: Task): Result<List<Task>>
 }

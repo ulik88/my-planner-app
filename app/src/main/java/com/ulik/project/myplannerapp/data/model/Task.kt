@@ -13,6 +13,7 @@ data class Task(
     var description:String,
     var isCompleted: Boolean = false,
     var isFavorite:Boolean = false,
+    var createdDate: Date = Date(),
 
     @PrimaryKey
     var id: String = UUID.randomUUID().toString()

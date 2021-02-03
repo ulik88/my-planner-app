@@ -40,8 +40,10 @@
         android:label="fragment_start_page"
         tools:layout="@layout/fragment_start_page" >
         <action
-            android:id="@+id/action_startPage_to_addTaskFragment"
-            app:destination="@id/addTaskFragment" />
+            android:id="@+id/action_startPage_to_tasksFragment"
+            app:destination="@id/tasksFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/taskDetailFragment"

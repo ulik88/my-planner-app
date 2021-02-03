@@ -1,20 +1,18 @@
 package com.ulik.project.myplannerapp.ui
 
-import android.graphics.drawable.Icon
 import android.os.Build
 import androidx.navigation.fragment.navArgs
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.ulik.project.myplannerapp.R
 import com.ulik.project.myplannerapp.utilities.EventObserver
 import kotlinx.android.synthetic.main.fragment_add_task.*
-import kotlinx.android.synthetic.main.fragment_tasks.btn_save
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
@@ -57,13 +55,16 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
 
         })
 
-        tasksViewModel.shoTaskSaveSuccesfuly.observe(viewLifecycleOwner, EventObserver {
+        tasksViewModel.navigateToTasksFragment.observe(viewLifecycleOwner, Observer {
+//            if (it.startState)
+            it.getContentIfNotHandled()?.let {
 
-            Log.d("Updated", "Deer" + it.toString())
+                Toast.makeText(requireContext(), "task saved successfuly", Toast.LENGTH_SHORT)
+                    .show()
 
-            Toast.makeText(requireContext(), "task saved successfuly", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_addTaskFragment_to_tasksFragment)
+            }
 
-            findNavController().navigate(R.id.action_addTaskFragment_to_tasksFragment)
         })
     }
 }

@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.FtsOptions
 import com.ulik.project.myplannerapp.R
 import com.ulik.project.myplannerapp.data.model.Task
+import com.ulik.project.myplannerapp.utilities.formatDate
 import kotlinx.android.synthetic.main.item_task.view.*
 
-class TasksAdapter(val tasksViewModel: TasksViewModel) : RecyclerView.Adapter<TasksAdapter.HistoryViewHolder>() {
+class TasksAdapter(val tasksViewModel: TasksViewModel) :
+    RecyclerView.Adapter<TasksAdapter.HistoryViewHolder>() {
 
-    val tasks = mutableListOf<Task>()
+//    val tasks = mutableListOf<Task>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -21,16 +23,16 @@ class TasksAdapter(val tasksViewModel: TasksViewModel) : RecyclerView.Adapter<Ta
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.bind(tasks[position])
+        holder.bind(tasksViewModel.tasks[position])
     }
 
     override fun getItemCount(): Int {
-        return tasks.size
+        return tasksViewModel.tasks.size
     }
 
     fun update(list: List<Task>) {
-       tasks.clear()
-        tasks.addAll(list)
+        tasksViewModel.tasks.clear()
+        tasksViewModel.tasks.addAll(list)
         notifyDataSetChanged()
     }
 
@@ -66,6 +68,8 @@ class TasksAdapter(val tasksViewModel: TasksViewModel) : RecyclerView.Adapter<Ta
                 itemView.setOnClickListener {
                     tasksViewModel.showTaskDetails(task)
                 }
+
+                tv_date.text = formatDate(task)
             }
         }
     }

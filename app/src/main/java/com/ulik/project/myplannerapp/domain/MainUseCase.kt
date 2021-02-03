@@ -2,14 +2,13 @@ package com.ulik.project.myplannerapp.domain
 
 import com.ulik.project.myplannerapp.data.TaskRepository
 import com.ulik.project.myplannerapp.data.model.Task
-import com.ulik.project.myplannerapp.presenter.TasksPresnter
-import com.ulik.project.myplannerapp.utilities.Event
+import com.ulik.project.myplannerapp.presenter.TasksPresenter
 import com.ulik.project.myplannerapp.utilities.Result
 import kotlinx.coroutines.delay
 
 class MainUseCase(
     val taskRepository: TaskRepository,
-    val tasksPresenter: TasksPresnter
+    val tasksPresenter: TasksPresenter
 
    ) {
 
@@ -31,7 +30,6 @@ class MainUseCase(
     suspend fun updateTask(task: Task) {
         var update = taskRepository.updateTask(task)
         when(update){
-
             is Result.Success ->{
                 tasksPresenter.showTaskSavedSuccessfuly(update.data)
             }
@@ -41,6 +39,21 @@ class MainUseCase(
             }
         }
     }
+
+//    suspend fun shareTaskToGroup(task: Task){
+//
+//        var update = taskRepository.shareTaskToGroup(task)
+//        when(update){
+//            is Result.Success ->{
+//                tasksPresenter.showTaskSaredSuccessfuly(update.data)
+//            }
+//
+//            is Result.Error ->{
+//                tasksPresenter.showError(update.exception.toString())
+//            }
+//        }
+//    }
+
     suspend fun deleteTask(task: Task){
 //        tasksPresenter.taskDeletedSuccesfully()
 
@@ -60,7 +73,7 @@ class MainUseCase(
         val result = taskRepository.getTasks()
         when (result) {
             is Result.Success -> {
-                tasksPresenter.showTaskSavedSuccessfuly(result.data)
+                tasksPresenter.showLoadedTask(result.data)
             }
             is Result.Error -> {
                 tasksPresenter.showError(result.exception.toString())

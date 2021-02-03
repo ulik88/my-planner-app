@@ -4,16 +4,18 @@ import android.content.Context
 import androidx.room.RoomDatabase
 import androidx.room.Room
 import androidx.room.Database
+import androidx.room.TypeConverters
 import com.ulik.project.myplannerapp.data.model.Task
-//import com.ulik.project.myplannerapp.utilities.Converters
+import com.ulik.project.myplannerapp.utilities.Converters
 
 @Database(
     entities =  [
         Task::class
     ],
-    version = 1,
+    version = 2,
 )
 
+@TypeConverters(Converters::class)   // für Data Zeichen
 abstract class DataBase : RoomDatabase() {
     abstract fun taskDao(): TasksDao
 

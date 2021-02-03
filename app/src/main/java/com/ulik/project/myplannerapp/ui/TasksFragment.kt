@@ -16,8 +16,15 @@ import kotlinx.android.synthetic.main.fragment_tasks.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class TasksFragment : Fragment(R.layout.fragment_tasks) {
+
     val tasksViewModel: TasksViewModel by sharedViewModel()
-    private lateinit var adapter: TasksAdapter
+    lateinit var adapter: TasksAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        onBackPressedCallback()
+
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,13 +34,18 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
             findNavController().navigate(R.id.action_tasksFragment_to_addTaskFragment)
         }
 
-        tasksViewModel.shoTaskSaveSuccesfuly.observe(viewLifecycleOwner, Observer {
-            adapter.update(it.peekContent())
+        tasksViewModel.updateAdapter.observe(viewLifecycleOwner, EventObserver {
+            adapter.update(it)
         })
 
 
         tasksViewModel.deleteTask.observe(viewLifecycleOwner, EventObserver{
             Toast.makeText(requireActivity(), "Deleted!", Toast.LENGTH_SHORT).show()
+        })
+
+        tasksViewModel.showLoadedTaskEvent.observe(viewLifecycleOwner,EventObserver{
+            adapter.update(it)
+
         })
 
         tasksViewModel.openTaskDetails.observe(viewLifecycleOwner, EventObserver {task ->
@@ -42,59 +54,4 @@ class TasksFragment : Fragment(R.layout.fragment_tasks) {
             findNavController().navigate(directions)
         })
     }
-
-
-    fun getPosition(adapterPosition: Int): Int{
-        if (adapterPosition == -1) return 0
-        return adapterPosition
-    }
-
-
-    private fun initRecyclerView() {
-        adapter = TasksAdapter(tasksViewModel)
-        with(recycler_view) {
-            layoutManager = LinearLayoutManager(requireContext())
-
-            val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    val adapter = recycler_view.adapter as TasksAdapter
-//                    adapter.removeAt(viewHolder.adapterPosition)
-                    val pos = getPosition(viewHolder.adapterPosition)
-                    tasksViewModel.remove(adapter.tasks[pos])
-                    adapter.tasks.removeAt(pos)
-                    adapter.notifyDataSetChanged()
-                }
-            }
-
-
-//            val simpleItemTouchCallback: ItemTouchHelper.SimpleCallback = object :
-//                    ItemTouchHelper.SimpleCallback(
-//                            0,
-//                            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-//                    ) {
-//                override fun onMove(
-//                        recyclerView: RecyclerView,
-//                        viewHolder: RecyclerView.ViewHolder,
-//                        target: RecyclerView.ViewHolder
-//                ): Boolean {
-//                    Toast.makeText(requireActivity(), "on Move", Toast.LENGTH_SHORT).show()
-//                    return false
-//                }
-//
-//                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
-//                    Toast.makeText(requireActivity(), "on Swiped ", Toast.LENGTH_SHORT).show()
-//                    //Remove swiped item from list and notify the RecyclerView
-//                    val position = viewHolder.adapterPosition
-//                    tasksViewModel.remove(position)
-//                    adapter!!.notifyDataSetChanged()
-//                }
-//            }
-
-            val itemTouchHelper = ItemTouchHelper(swipeHandler)
-            itemTouchHelper.attachToRecyclerView(recycler_view)
-
-        }
-        recycler_view.adapter = adapter
-    }
-
 }

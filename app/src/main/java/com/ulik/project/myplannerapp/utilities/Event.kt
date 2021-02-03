@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
  */
 open class Event<out T>(private val content: T) {
 
+    var startState = false
     @Suppress("MemberVisibilityCanBePrivate")
     var hasBeenHandled = false
         private set // Allow external read but not write
@@ -38,6 +39,7 @@ open class Event<out T>(private val content: T) {
  */
 class EventObserver<T>(private val onEventUnhandledContent: (T) -> Unit) : Observer<Event<T>> {
     override fun onChanged(event: Event<T>?) {
+        event?.startState = true
         event?.getContentIfNotHandled()?.let {
             onEventUnhandledContent(it)
         }
