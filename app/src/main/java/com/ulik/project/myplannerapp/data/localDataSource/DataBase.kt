@@ -12,7 +12,7 @@ import com.ulik.project.myplannerapp.utilities.Converters
     entities =  [
         Task::class
     ],
-    version = 2,
+    version = 10,
 )
 
 @TypeConverters(Converters::class)   // für Data Zeichen

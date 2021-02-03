@@ -9,5 +9,6 @@ interface TasksPresenter {
     suspend fun showLoading(state: Boolean)
     suspend fun taskDeletedSuccesfully()
     suspend fun showLoadedTask(tasks: List<Task>)
-//    suspend fun showTaskSaredSuccessfuly(task: List<Task>)
+    suspend fun showTaskSharedSuccessfuly(data: List<Task>)
+    suspend fun showSharedTasks(tasks: List<Task>)
 }

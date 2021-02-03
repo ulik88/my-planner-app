@@ -41,6 +41,21 @@ class TasksPresneterImpl : TaskPresenterState,TasksPresenter{
         _showLoadedTaskEvent.postValue(Event(tasks))
     }
 
+    private val _showTaskSharedSuccessfulyEvent = MutableLiveData<Event<List<Task>>>()
+    override val showTaskSharedSuccessfulyEvent: LiveData<Event<List<Task>>> =
+        _showTaskSharedSuccessfulyEvent
+    override suspend fun showTaskSharedSuccessfuly(data: List<Task>) {
+        _showTaskSharedSuccessfulyEvent
+    }
+
+    private val _showTaskSharedEvent = MutableLiveData<Event<List<Task>>>()
+    override val showTaskSharedEvent: LiveData<Event<List<Task>>> =
+        _showTaskSharedEvent
+    override suspend fun showSharedTasks(tasks: List<Task>) {
+        _showTaskSharedEvent.postValue(Event(tasks))
+    }
+
+
     private val _deleteTask = MutableLiveData<Event<Unit>>()
     override val deleteTask: LiveData<Event<Unit>> = _deleteTask
     override suspend fun taskDeletedSuccesfully() {

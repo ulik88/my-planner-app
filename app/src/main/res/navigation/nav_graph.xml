@@ -44,6 +44,9 @@
             app:destination="@id/tasksFragment"
             app:enterAnim="@android:anim/fade_in"
             app:popEnterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_startPage_to_sharedTaskFragment"
+            app:destination="@id/sharedTaskFragment" />
     </fragment>
     <fragment
         android:id="@+id/taskDetailFragment"
@@ -57,4 +60,14 @@
             android:id="@+id/action_taskDetailFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/sharedTaskFragment"
+        android:name="com.ulik.project.myplannerapp.ui.SharedTaskFragment"
+        android:label="fragment_shared_task"
+        tools:layout="@layout/fragment_shared_task" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.ulik.project.myplannerapp.ui.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
 </navigation>

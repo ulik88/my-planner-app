@@ -12,4 +12,6 @@ interface TaskPresenterState {
     val navigateToTasksFragment:LiveData<Event<List<Task>>>
     val deleteTask: LiveData<Event<Unit>>
     val showLoadedTaskEvent: LiveData<Event<List<Task>>>
+    val showTaskSharedSuccessfulyEvent: LiveData<Event<List<Task>>>
+    val showTaskSharedEvent: LiveData<Event<List<Task>>>
 }

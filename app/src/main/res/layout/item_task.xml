@@ -49,21 +49,32 @@
             android:id="@+id/iv_isfavorite"
             android:layout_width="31dp"
             android:layout_height="31dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_favorite_24" />
 
+        <ImageView
+            android:id="@+id/iv_isShared"
+            android:layout_width="31dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_isfavorite"
+            app:srcCompat="@drawable/ic_baseline_share_24" />
+
+
         <TextView
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_isfavorite" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_isShared" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

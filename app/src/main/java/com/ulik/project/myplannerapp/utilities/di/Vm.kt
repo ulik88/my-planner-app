@@ -1,6 +1,6 @@
 package com.ulik.project.myplannerapp.utilities.di
 
-import com.ulik.project.myplannerapp.data.TaskRepoDbIml
+import com.ulik.project.myplannerapp.data.TaskRepoDbImpl
 import com.ulik.project.myplannerapp.data.TaskRepository
 import com.ulik.project.myplannerapp.data.localDataSource.DataBase
 import com.ulik.project.myplannerapp.domain.MainUseCase
@@ -32,7 +32,7 @@ val domainModule = module {
 
 val repoModule = module {
     single<TaskRepository> {
-        TaskRepoDbIml(dao = get())
+        TaskRepoDbImpl(dao = get())
     }
 }
 

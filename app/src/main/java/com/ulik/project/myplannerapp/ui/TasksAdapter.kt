@@ -57,6 +57,12 @@ class TasksAdapter(val tasksViewModel: TasksViewModel) :
                 } else {
                     iv_isfavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
                 }
+
+                if (task.isShared){
+                    iv_isShared.setImageResource(R.drawable.ic_baseline_share_red)
+                }else{
+                    iv_isShared.setImageResource(R.drawable.ic_baseline_share_24)
+                }
                 itemView.complete_checkbox.setOnClickListener {
                     tasksViewModel.taskUpdate(task.copy(isCompleted = complete_checkbox.isChecked))
 
@@ -64,6 +70,11 @@ class TasksAdapter(val tasksViewModel: TasksViewModel) :
                 iv_isfavorite.setOnClickListener {
                     tasksViewModel.taskUpdate(task.copy(isFavorite = !task.isFavorite))
                 }
+
+                iv_isShared.setOnClickListener {
+                    tasksViewModel.shareTask(task.copy(isShared = !task.isShared))
+                }
+
 
                 itemView.setOnClickListener {
                     tasksViewModel.showTaskDetails(task)

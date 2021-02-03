@@ -7,35 +7,36 @@
     tools:context=".MainActivity">
 
 
-    <Button
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_save"
         android:layout_width="307dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_btn"
-        android:text="Add Task"
-        android:textColor="#707070"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="72dp"
+        android:src="@drawable/ic_baseline_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:backgroundTint="@color/purple_200"
+        app:elevation="6dp"
+        app:fabSize="normal"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:paddingTop="52dp"
         android:layout_width="409dp"
         android:layout_height="665dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:paddingTop="52dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.177">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

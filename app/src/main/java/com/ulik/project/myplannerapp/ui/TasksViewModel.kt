@@ -59,4 +59,20 @@ class TasksViewModel(
     fun showTaskDetails(task: Task) {
         _openTaskDetails.value= Event(task)   //InFlow, value of LiveData
     }
+
+    fun shareTask(task: Task) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                useCase.shareTaskToGroup(task)
+            }
+        }
+    }
+
+    fun getSharedTasks(){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                useCase.getSharedTasks()
+            }
+        }
+    }
 }

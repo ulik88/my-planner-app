@@ -41,4 +41,12 @@ class TaskRepoImplement : TaskRepository {
         }
         return Result.Error(Exception("task not found"))
     }
+
+    override suspend fun shareTaskToGroup(task: Task): Result<List<Task>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getSharedTasks(): Result<List<Task>> {
+        TODO("Not yet implemented")
+    }
 }

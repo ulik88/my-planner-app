@@ -40,19 +40,32 @@ class MainUseCase(
         }
     }
 
-//    suspend fun shareTaskToGroup(task: Task){
-//
-//        var update = taskRepository.shareTaskToGroup(task)
-//        when(update){
-//            is Result.Success ->{
-//                tasksPresenter.showTaskSaredSuccessfuly(update.data)
-//            }
-//
-//            is Result.Error ->{
-//                tasksPresenter.showError(update.exception.toString())
-//            }
-//        }
-//    }
+    suspend fun shareTaskToGroup(task: Task){
+        var update = taskRepository.shareTaskToGroup(task)
+        when (update){
+            is Result.Success -> {
+                tasksPresenter.showTaskSavedSuccessfuly(update.data)
+                tasksPresenter.showTaskSharedSuccessfuly(update.data)
+            }
+
+            is Result.Error -> {
+                tasksPresenter.showError(update.exception.toString())
+            }
+        }
+    }
+
+    suspend fun getSharedTasks(){
+        var sharedTasks = taskRepository.getSharedTasks()
+        when (sharedTasks){
+            is Result.Success -> {
+                tasksPresenter.showSharedTasks(sharedTasks.data)
+            }
+
+            is Result.Error -> {
+                tasksPresenter.showError(sharedTasks.exception.toString())
+            }
+        }
+    }
 
     suspend fun deleteTask(task: Task){
 //        tasksPresenter.taskDeletedSuccesfully()
