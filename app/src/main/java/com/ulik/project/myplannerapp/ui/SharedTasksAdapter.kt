@@ -11,32 +11,33 @@ import com.ulik.project.myplannerapp.data.model.Task
 import com.ulik.project.myplannerapp.utilities.formatDate
 import kotlinx.android.synthetic.main.item_task.view.*
 
-class TasksAdapter(val tasksViewModel: TasksViewModel) :
-    RecyclerView.Adapter<TasksAdapter.HistoryViewHolder>() {
+class SharedTasksAdapter(val tasksViewModel: TasksViewModel) :
+    RecyclerView.Adapter<SharedTasksAdapter.SharedViewHolder>() {
+
 
 //    val tasks = mutableListOf<Task>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SharedViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_task, parent, false)
-        return HistoryViewHolder(view)
+        return SharedViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.bind(tasksViewModel.tasks[position])
+    override fun onBindViewHolder(holder: SharedViewHolder, position: Int) {
+        holder.bind(tasksViewModel.sharedTasks[position])
     }
 
     override fun getItemCount(): Int {
-        return tasksViewModel.tasks.size
+        return tasksViewModel.sharedTasks.size
     }
 
     fun update(list: List<Task>) {
-        tasksViewModel.tasks.clear()
-        tasksViewModel.tasks.addAll(list)
+        tasksViewModel.sharedTasks.clear()
+        tasksViewModel.sharedTasks.addAll(list)
         notifyDataSetChanged()
     }
 
-    inner class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class SharedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(task: Task) {
             with(itemView) {

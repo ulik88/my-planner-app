@@ -16,6 +16,12 @@
         <action
             android:id="@+id/action_tasksFragment_to_taskDetailFragment"
             app:destination="@id/taskDetailFragment" />
+        <action
+            android:id="@+id/action_tasksFragment_to_sharedTaskFragment"
+            app:destination="@id/sharedTaskFragment" />
+        <action
+            android:id="@+id/action_tasksFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
 
     <fragment
@@ -44,9 +50,6 @@
             app:destination="@id/tasksFragment"
             app:enterAnim="@android:anim/fade_in"
             app:popEnterAnim="@android:anim/fade_in" />
-        <action
-            android:id="@+id/action_startPage_to_sharedTaskFragment"
-            app:destination="@id/sharedTaskFragment" />
     </fragment>
     <fragment
         android:id="@+id/taskDetailFragment"

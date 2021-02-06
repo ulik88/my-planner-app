@@ -19,6 +19,7 @@ class TasksViewModel(
 ) : ViewModel(), TaskPresenterState by tasksPresenterState {
 
     val tasks = mutableListOf<Task>()
+    val sharedTasks = mutableListOf<Task>()
 
     init {
 

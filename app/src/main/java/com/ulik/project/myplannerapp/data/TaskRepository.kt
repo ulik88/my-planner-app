@@ -10,4 +10,6 @@ interface TaskRepository{
     suspend fun deleteTask(task: Task):Result<Unit>
     suspend fun shareTaskToGroup(task: Task): Result<List<Task>>
     suspend fun getSharedTasks(): Result<List<Task>>
+//    suspend fun getSharedFavoriteTasks(): Result<List<Task>>
+//    suspend fun shareFavoriteTaskToGroup(task: Task): Result<List<Task>>
 }

@@ -49,4 +49,21 @@ class TaskRepoImplement : TaskRepository {
     override suspend fun getSharedTasks(): Result<List<Task>> {
         TODO("Not yet implemented")
     }
+
+
+//    override suspend fun getSharedFavoriteTasks(): Result<List<Task>> {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override suspend fun shareFavoriteTaskToGroup(task: Task): Result<List<Task>> {
+//        taskList.forEach {
+//
+//            if (it.id == task.id){
+//                taskList.remove(it)
+//                taskList.add(task)
+//                return Result.Success(taskList.reversed())
+//            }
+//        }
+//        return Result.Error(Exception("task not found"))
+//    }
 }

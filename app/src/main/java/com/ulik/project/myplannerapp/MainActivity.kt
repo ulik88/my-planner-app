@@ -20,6 +20,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_main)
 
+
+
+
+
+
+
+
+
 //        val host: NavHostFragment = supportFragmentManager
 //            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment? ?: return
 
@@ -28,9 +36,9 @@ class MainActivity : AppCompatActivity() {
 //        setupBottomNavMenu(navController)
 //    }
 //    private fun setupBottomNavMenu(navController: NavController) {
-//        // TODO STEP 9.3 - Use NavigationUI to set up Bottom Nav
+////        // TODO STEP 9.3 - Use NavigationUI to set up Bottom Nav
 //        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
-////        bottomNav?.setupWithNavController(navController)
+//        bottomNav?.setupWithNavController(navController)
 //        // TODO END STEP 9.3
 
         val fragmentTasks = TasksFragment()
@@ -57,6 +65,6 @@ class MainActivity : AppCompatActivity() {
     private fun setCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction(). apply {
             replace(R.id.nav_host_fragment, fragment)
-            commit()
-        }
+                .commit()
+    }
 }

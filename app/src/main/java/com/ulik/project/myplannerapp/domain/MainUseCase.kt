@@ -45,7 +45,7 @@ class MainUseCase(
         when (update){
             is Result.Success -> {
                 tasksPresenter.showTaskSavedSuccessfuly(update.data)
-                tasksPresenter.showTaskSharedSuccessfuly(update.data)
+//                tasksPresenter.showTaskSharedSuccessfuly(update.data)
             }
 
             is Result.Error -> {
@@ -60,7 +60,6 @@ class MainUseCase(
             is Result.Success -> {
                 tasksPresenter.showSharedTasks(sharedTasks.data)
             }
-
             is Result.Error -> {
                 tasksPresenter.showError(sharedTasks.exception.toString())
             }
@@ -94,4 +93,5 @@ class MainUseCase(
         }
         tasksPresenter.showLoading(false)
     }
+
 }

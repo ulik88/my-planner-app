@@ -10,7 +10,7 @@ import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 
 class TaskRepoDbImpl(val dao: TasksDao) : TaskRepository {
-    private val TAG: String = "TaskRepoDbIml"
+    private val TAG: String = "TaskRepoDbImpl"
     private val db = Firebase.firestore
 
     override suspend fun getTasks(): Result<List<Task>> {
@@ -72,4 +72,5 @@ class TaskRepoDbImpl(val dao: TasksDao) : TaskRepository {
             .await()
         return result
     }
+
 }
