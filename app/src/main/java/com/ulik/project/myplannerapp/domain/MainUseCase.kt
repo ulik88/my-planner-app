@@ -94,4 +94,21 @@ class MainUseCase(
         tasksPresenter.showLoading(false)
     }
 
+    suspend fun getAllFavoriteTasks() {
+        tasksPresenter.showLoading(true)
+        val result = taskRepository.getTasks()
+        when (result) {
+            is Result.Success -> {
+
+                tasksPresenter.showSharedFavoriteTasks(result.data.filter {
+                    it.isFavorite
+                })
+            }
+            is Result.Error -> {
+                tasksPresenter.showError(result.exception.toString())
+            }
+        }
+        tasksPresenter.showLoading(false)
+    }
+
 }

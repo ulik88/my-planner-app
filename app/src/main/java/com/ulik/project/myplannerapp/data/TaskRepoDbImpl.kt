@@ -35,18 +35,34 @@ class TaskRepoDbImpl(val dao: TasksDao) : TaskRepository {
 
         lateinit var result: Result<List<Task>>
 
-        db.collection("cities").document(task.id)
-            .set(task)
-            .addOnSuccessListener {
-                Log.d(TAG, "DocumentSnapshot successfully written!")
-                result = Result.Success(emptyList())
+        if (task.isShared){
+            db.collection("cities").document(task.id)
+                .set(task)
+                .addOnSuccessListener {
+                    Log.d(TAG, "DocumentSnapshot successfully written!")
+                    result = Result.Success(emptyList())
 
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error writing document", e)
-                result = Result.Error(Exception())
-            }
-            .await()
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error writing document", e)
+                    result = Result.Error(Exception())
+                }
+                .await()
+        }else{
+
+            db.collection("cities").document(task.id)
+                .delete()
+                .addOnSuccessListener {
+                    Log.d(TAG, "DocumentSnapshot successfully written!")
+                    result = Result.Success(emptyList())
+
+                }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "Error writing document", e)
+                    result = Result.Error(Exception())
+                }
+                .await()
+        }
 
         if (result is Result.Success){
             updateTask(task)

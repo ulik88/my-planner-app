@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/favFragment"
+    <item android:id="@+id/favoriteFragment"
         android:title="Favorite"
         app:showAsAction="always"
         android:orderInCategory="3"
         android:icon="@drawable/ic_baseline_favorite_24"/>
 
-    <item android:id="@+id/groupFragment"
+    <item android:id="@+id/sharedTaskFragment"
         android:title="Group"
         app:showAsAction="always"
         android:orderInCategory="2"
         android:icon="@drawable/ic_baseline_group_24"/>
 
-    <item android:id="@+id/homeFragment"
+    <item android:id="@+id/tasksFragment"
         android:title="Home"
         app:showAsAction="always"
         android:orderInCategory="1"

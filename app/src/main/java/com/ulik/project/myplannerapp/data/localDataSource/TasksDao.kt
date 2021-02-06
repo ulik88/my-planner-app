@@ -6,7 +6,7 @@ import com.ulik.project.myplannerapp.data.model.Task
 @Dao
 interface TasksDao {
 
-    @Query("SELECT * FROM Task")
+    @Query("SELECT * FROM Task") //Where isFavorite true
     suspend fun getTasks(): List<Task>
 
     @Insert

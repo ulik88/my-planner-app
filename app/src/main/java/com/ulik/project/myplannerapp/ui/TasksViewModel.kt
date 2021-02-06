@@ -21,11 +21,23 @@ class TasksViewModel(
     val tasks = mutableListOf<Task>()
     val sharedTasks = mutableListOf<Task>()
 
+    val favoriteTasks = mutableListOf<Task>()
+
     init {
 
         viewModelScope.launch {
             withContext(Dispatchers.IO){
                 useCase.getAllTasks()
+            }
+        }
+    }
+
+
+    fun getFavoriteTask() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                useCase.getAllFavoriteTasks()
+
             }
         }
     }

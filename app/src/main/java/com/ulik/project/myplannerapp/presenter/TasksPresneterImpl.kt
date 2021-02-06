@@ -45,7 +45,7 @@ class TasksPresneterImpl : TaskPresenterState,TasksPresenter{
     override val showTaskSharedSuccessfulyEvent: LiveData<Event<List<Task>>> =
         _showTaskSharedSuccessfulyEvent
     override suspend fun showTaskSharedSuccessfuly(data: List<Task>) {
-        _showTaskSharedSuccessfulyEvent
+        _showTaskSharedSuccessfulyEvent.postValue(Event(data))
     }
 
     private val _showTaskSharedEvent = MutableLiveData<Event<List<Task>>>()
@@ -59,7 +59,7 @@ class TasksPresneterImpl : TaskPresenterState,TasksPresenter{
     override val showTaskSharedFavoriteEvent: LiveData<Event<List<Task>>> =
         _showTaskSharedFavoriteEvent
     override suspend fun showSharedFavoriteTasks(data: List<Task>){
-        _showTaskSharedFavoriteEvent
+        _showTaskSharedFavoriteEvent.postValue(Event(data))
     }
 
 
