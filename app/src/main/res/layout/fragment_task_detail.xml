@@ -9,20 +9,6 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/tv_title_to_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Title"
-        android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/tv_description_to_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,27 +16,41 @@
         android:hint="Description"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.334"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_to_edit" />
+
+    <TextView
+        android:id="@+id/tv_title_to_edit"
+        android:layout_width="113dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="236dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Title"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/iv_edit"
 
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="72dp"
         android:src="@drawable/ic_baseline_edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/editTv"
-        android:layout_width="100dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="78dp"
+        android:layout_height="19dp"
         android:text="Edit here"
+        android:textColor="#4E73E3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_edit"
         tools:text="Edit here" />

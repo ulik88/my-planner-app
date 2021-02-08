@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/tasksFragment"
         android:name="com.ulik.project.myplannerapp.ui.TasksFragment"
-        android:label="fragment_tasks"
+        android:label="All Tasks"
         tools:layout="@layout/fragment_tasks">
     <action
         android:id="@+id/action_tasksFragment_to_addTaskFragment"
@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/addTaskFragment"
         android:name="com.ulik.project.myplannerapp.ui.AddTaskFragment"
-        android:label="fragment_add_task"
+        android:label="Adding Task"
         tools:layout="@layout/fragment_add_task" >
         <action
             android:id="@+id/action_addTaskFragment_to_tasksFragment"
@@ -54,7 +54,7 @@
     <fragment
         android:id="@+id/taskDetailFragment"
         android:name="com.ulik.project.myplannerapp.ui.TaskDetailFragment"
-        android:label="fragment_task_detail"
+        android:label="Edit Taks"
         tools:layout="@layout/fragment_task_detail" >
         <argument
             android:name="task"
@@ -66,11 +66,11 @@
     <fragment
         android:id="@+id/sharedTaskFragment"
         android:name="com.ulik.project.myplannerapp.ui.SharedTaskFragment"
-        android:label="fragment_shared_task"
+        android:label="Group Tasks"
         tools:layout="@layout/fragment_shared_task" />
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.ulik.project.myplannerapp.ui.FavoriteFragment"
-        android:label="fragment_favorite"
+        android:label="Favourites"
         tools:layout="@layout/fragment_favorite" />
 </navigation>

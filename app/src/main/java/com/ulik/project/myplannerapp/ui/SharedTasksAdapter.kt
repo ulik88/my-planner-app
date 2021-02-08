@@ -69,18 +69,20 @@ class SharedTasksAdapter(val tasksViewModel: TasksViewModel) :
                     tasksViewModel.taskUpdate(task.copy(isCompleted = complete_checkbox.isChecked))
 
                 }
-                iv_isfavorite.setOnClickListener {
-                    tasksViewModel.taskUpdate(task.copy(isFavorite = !task.isFavorite))
-                }
+//                iv_isfavorite.setOnClickListener {
+//                    tasksViewModel.taskUpdate(task.copy(isFavorite = !task.isFavorite))
+//                }
 
                 iv_isShared.setOnClickListener {
                     tasksViewModel.shareTask(task.copy(isShared = !task.isShared))
+                    tasksViewModel.getSharedTasks()
+                    notifyDataSetChanged()
                 }
 
 
-                itemView.setOnClickListener {
-                    tasksViewModel.showTaskDetails(task)
-                }
+//                itemView.setOnClickListener {
+//                    tasksViewModel.showTaskDetails(task)
+//                }
 
                 tv_date.text = formatDate(task)
             }

@@ -75,13 +75,15 @@ class SharedFavoriteTasksAdapter(val tasksViewModel: TasksViewModel) :
 
                 iv_isShared.setOnClickListener {
                     tasksViewModel.shareTask(task.copy(isShared = !task.isShared))
+                    tasksViewModel.getSharedTasks()
+                    notifyDataSetChanged()
                 }
 
-
-                itemView.setOnClickListener {
-                    tasksViewModel.showTaskDetails(task)
-
-                }
+//
+//                itemView.setOnClickListener {
+//                    tasksViewModel.showTaskDetails(task)
+//
+//                }
 
                 tv_date.text = formatDate(task)
             }

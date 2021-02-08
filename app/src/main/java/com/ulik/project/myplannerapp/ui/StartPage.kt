@@ -23,7 +23,7 @@ class StartPage : Fragment(R.layout.fragment_start_page) {
 
         lifecycleScope.launchWhenCreated {
             withContext(Dispatchers.Main) {
-                delay(700)
+                delay(1000)
                 findNavController().navigate(R.id.action_startPage_to_tasksFragment, null)
             }
         }

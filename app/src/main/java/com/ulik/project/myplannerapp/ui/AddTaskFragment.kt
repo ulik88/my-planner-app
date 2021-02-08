@@ -25,7 +25,7 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
 
         if( args?.task!=null){
             val recievedTask = args!!.task!!
-            iv_save
+//            iv_save
             editTextTextPersonName.setText(recievedTask.description)
             editTextTextPersonName2.setText(recievedTask.title)
 
@@ -36,7 +36,7 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
                 tasksViewModel.taskUpdate(recievedTask.copy(title = title, description = desc))
             }
         }else{
-            iv_save
+//            iv_save
             iv_save.setOnClickListener {
                 var title = editTextTextPersonName.text.toString()
                 var desc = editTextTextPersonName2.text.toString()

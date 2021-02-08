@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
         app:layout_constraintVertical_bias="0.14" />
 
-    <ProgressBar
+        <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="67dp"
@@ -50,8 +50,8 @@
         android:id="@+id/iv_save"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="72dp"
         android:background="@drawable/ic_baseline_save"
         android:text="save task"
         android:textColor="#707070"
@@ -62,10 +62,10 @@
 
     <TextView
         android:id="@+id/tv_save_icon"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="79dp"
+        android:layout_height="19dp"
         android:text="Save here"
+        android:textColor="#4E73E3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_save"
         tools:text="Save here" />
