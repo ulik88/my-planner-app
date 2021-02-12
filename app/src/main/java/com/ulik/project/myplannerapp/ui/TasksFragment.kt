@@ -1,22 +1,13 @@
 package com.ulik.project.myplannerapp.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.ulik.project.myplannerapp.R
-import com.ulik.project.myplannerapp.data.model.Task
 import com.ulik.project.myplannerapp.utilities.EventObserver
-import com.ulik.project.myplannerapp.utilities.SwipeToDeleteCallback
 import kotlinx.android.synthetic.main.fragment_tasks.*
-import kotlinx.android.synthetic.main.item_task.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class TasksFragment : Fragment(R.layout.fragment_tasks) {

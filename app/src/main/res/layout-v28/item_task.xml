@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
-    android:layout_marginTop="4dp"
+    android:layout_marginTop="8dp"
     android:layout_marginEnd="16dp"
-    app:cardCornerRadius="@dimen/card_corner_radius">
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/cardview_compat_inset_shadow">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_item_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#DAE3FB"
+        android:background="#E2FFFFFF"
+        android:outlineProvider="bounds"
         android:padding="16dp">
 
         <CheckBox
@@ -22,7 +24,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,18 +34,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            android:textSize="24sp"
             app:layout_constraintStart_toEndOf="@+id/complete_checkbox"
-            app:layout_constraintTop_toTopOf="@+id/complete_checkbox"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Alatoo 20/2 to Dordoi" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="20dp"
             android:textColor="@android:color/tertiary_text_light"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+
             app:layout_constraintStart_toStartOf="@+id/title_tv"
             app:layout_constraintTop_toBottomOf="@+id/title_tv"
             tools:text="13 Nav 2019" />
@@ -79,7 +84,6 @@
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_isShared" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

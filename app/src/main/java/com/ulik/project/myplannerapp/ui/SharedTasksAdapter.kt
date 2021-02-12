@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.FtsOptions
 import com.ulik.project.myplannerapp.R
 import com.ulik.project.myplannerapp.data.model.Task
 import com.ulik.project.myplannerapp.utilities.formatDate
