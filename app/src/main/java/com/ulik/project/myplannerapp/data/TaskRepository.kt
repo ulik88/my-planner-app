@@ -2,6 +2,7 @@ package com.ulik.project.myplannerapp.data
 
 import com.ulik.project.myplannerapp.data.model.Task
 import com.ulik.project.myplannerapp.utilities.Result
+import kotlinx.coroutines.flow.Flow
 
 interface TaskRepository{
     suspend fun getTasks():Result<List<Task>>
@@ -12,4 +13,5 @@ interface TaskRepository{
     suspend fun getSharedTasks(): Result<List<Task>>
 //    suspend fun getSharedFavoriteTasks(): Result<List<Task>>
 //    suspend fun shareFavoriteTaskToGroup(task: Task): Result<List<Task>>
+    suspend fun observeForChanges(): Flow<String>
 }

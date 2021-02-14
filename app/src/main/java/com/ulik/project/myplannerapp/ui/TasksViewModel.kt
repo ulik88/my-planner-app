@@ -27,6 +27,7 @@ class TasksViewModel(
 
         viewModelScope.launch {
             withContext(Dispatchers.IO){
+                useCase.observerForChanges()
                 useCase.getAllTasks()
             }
         }

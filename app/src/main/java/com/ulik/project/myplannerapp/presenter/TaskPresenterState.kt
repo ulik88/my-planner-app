@@ -15,4 +15,5 @@ interface TaskPresenterState {
     val showTaskSharedSuccessfulyEvent: LiveData<Event<List<Task>>>
     val showTaskSharedEvent: LiveData<Event<List<Task>>>
     val showTaskSharedFavoriteEvent: LiveData<Event<List<Task>>>
+    val notifyUserEvent: LiveData<Event<String>>
 }

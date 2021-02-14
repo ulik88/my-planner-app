@@ -12,4 +12,5 @@ interface TasksPresenter {
     suspend fun showTaskSharedSuccessfuly(data: List<Task>)
     suspend fun showSharedTasks(tasks: List<Task>)
     suspend fun showSharedFavoriteTasks(data: List<Task>)
+    suspend fun notifyUser(s: String)
 }

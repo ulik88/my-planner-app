@@ -5,6 +5,7 @@ import com.ulik.project.myplannerapp.data.model.Task
 import com.ulik.project.myplannerapp.presenter.TasksPresenter
 import com.ulik.project.myplannerapp.utilities.Result
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 
 class MainUseCase(
     val taskRepository: TaskRepository,
@@ -56,6 +57,7 @@ class MainUseCase(
 
     suspend fun getSharedTasks(){
         var sharedTasks = taskRepository.getSharedTasks()
+
         when (sharedTasks){
             is Result.Success -> {
                 tasksPresenter.showSharedTasks(sharedTasks.data)
@@ -63,6 +65,14 @@ class MainUseCase(
             is Result.Error -> {
                 tasksPresenter.showError(sharedTasks.exception.toString())
             }
+        }
+
+
+    }
+    suspend fun observerForChanges(){
+        taskRepository.observeForChanges().collect {
+            getSharedTasks()
+            tasksPresenter.notifyUser(it)
         }
     }
 

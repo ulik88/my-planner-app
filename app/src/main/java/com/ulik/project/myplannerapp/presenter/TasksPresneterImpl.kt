@@ -68,4 +68,10 @@ class TasksPresneterImpl : TaskPresenterState,TasksPresenter{
     override suspend fun taskDeletedSuccesfully() {
         _deleteTask.postValue(Event(Unit))
     }
+
+    private val _notifyUserEvent = MutableLiveData<Event<String>>()
+    override val notifyUserEvent: LiveData<Event<String>> = _notifyUserEvent
+    override suspend fun notifyUser(s: String) {
+        _notifyUserEvent.postValue(Event(s))
+    }
 }

@@ -1,11 +1,15 @@
 package com.ulik.project.myplannerapp.data
 
+import android.content.ContentValues
 import android.util.Log
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.ulik.project.myplannerapp.data.localDataSource.TasksDao
 import com.ulik.project.myplannerapp.data.model.Task
 import com.ulik.project.myplannerapp.utilities.Result
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.sendBlocking
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 
@@ -77,16 +81,38 @@ class TaskRepoDbImpl(val dao: TasksDao) : TaskRepository {
 
         db.collection("cities").get()
             .addOnSuccessListener {
-                Log.d(TAG, "DocumentSnapshot successfully read!")
+                Log.d("Nurs", "DocumentSnapshot successfully read!")
                 result = Result.Success(it.toObjects(Task::class.java))
 
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Error reading document", e)
+                Log.w("Nurs", "Error reading document", e)
                 result = Result.Error(Exception())
             }
             .await()
         return result
     }
 
+   override suspend fun observeForChanges(): Flow<String> =  callbackFlow {
+
+        val docRef = db.collection("cities")
+        docRef.addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                Log.d("Ulan", "Listen failed.", e)
+                return@addSnapshotListener
+            }
+
+            if (snapshot != null ) {
+
+                Log.d("Ulan", "Current data: ${snapshot.documentChanges.forEach { 
+                    it.document.data
+                }}")
+
+                offer( snapshot.documentChanges.get(0).document.data["title"].toString())
+            } else {
+                Log.d("Ulan", "Current data: null")
+            }
+        }
+       awaitClose()
+    }
 }
